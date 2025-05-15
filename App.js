@@ -1,25 +1,11 @@
-import { createAppContainer } from "react-navigation";
-import { createStackNavigator } from "react-navigation-stack";
-import HomeScreen from "./src/screens/HomeScreen";
-import ComponentScreen from "./src/screens/ComponentScreen";
-import TitleScreen from "./src/screens/TitleScreen";
-import ImageScreen from "./src/screens/ImageScreen";
+import React from "react";
+import RootNavigation from "./src/navigation/RootNavigation";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
+const App = () => {
 
-const navigator = createStackNavigator(
-  {
-    Home: HomeScreen,
-    Components: ComponentScreen,
-    Title: TitleScreen,
-    Image: ImageScreen
-  },
-  {
-    initialRouteName: "Title",
-    defaultNavigationOptions: {
-      title: "App",
-    },
-    
-  
-  }
-);
-
-export default createAppContainer(navigator);
+  return  (
+  <GestureHandlerRootView> 
+    <RootNavigation/> 
+  </GestureHandlerRootView>);
+};
+export default App
