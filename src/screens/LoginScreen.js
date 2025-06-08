@@ -1,17 +1,43 @@
-import React, { useState } from "react";
 import { StyleSheet, Text, View, Image } from "react-native";
-import { Pressable, TextInput } from "react-native-gesture-handler";
-
 import {
   TextInputComponent,
   LoadingComponent,
   ButtonComponent,
 } from "../Components";
 
+import { useSelector, useDispatch } from "react-redux";
+import { setIsLoading} from "../redux/userSlice";
+import { login, autoLogin } from "../redux/userSlice";
+import { useState, useEffect } from "react";
+
 const LoginScreen = ({ navigation }) => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
+
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+ 
+  
+
+
+
+
+
+  //userSlice içerisindeki verilerin okunması..:
+  const {isLoading} = useSelector((state) => state.user);
+
+  // userSlice içerisindeki reducer yapılarını kullanma veya veri gönderme
+  const dispatch = useDispatch();
+
+
+  // Kullanıcı daha önce giriş yaotıysa kontrol et ve auto login gerçekleştir
+  useEffect(() => {
+    dispatch(autoLogin())  
+  }, [])
+  
+
+
+
+
+
 
   return (
     <View style={styles.container}>
@@ -20,13 +46,12 @@ const LoginScreen = ({ navigation }) => {
       <Image
         style={styles.loginImage}
         source={require("../../assets/image/aviation.png")}
-        
-        />
+      />
 
       <TextInputComponent
         title="Email"
         isSecureText={false}
-        handleOnChangeText={setEmail}
+        handleOnChangeText={(text) => setEmail(text)}
         handleValue={email}
         handlePlaceholder="Enter your Email"
       />
@@ -34,7 +59,7 @@ const LoginScreen = ({ navigation }) => {
       <TextInputComponent
         title="Password"
         isSecureText={true}
-        handleOnChangeText={setPassword}
+        handleOnChangeText={(password) => setPassword(password)}
         handleValue={password}
         handlePlaceholder="Enter your password"
       />
@@ -42,23 +67,22 @@ const LoginScreen = ({ navigation }) => {
       <ButtonComponent
         setWidth="80%"
         buttonText="Login"
-        handleOnPress={() => setIsLoading(true)}
-        buttonColor="gray"
-        pressedButtonColor="blue"
+        handleOnPress={() => dispatch(login({email, password}))}
+        buttonColor="green"
+        pressedButtonColor="lightgreen"
       />
 
       <ButtonComponent
-        setWidth="80%"
+        setWidth="40%"
         buttonText="SignUp"
         handleOnPress={() => navigation.navigate("SignUp")}
-        buttonColor="gray"
-        pressedButtonColor="lightgray"
+        buttonColor="blue"
+        pressedButtonColor="lightblue"
       />
 
       {isLoading ? (
-        <LoadingComponent changeIsLoading={() => setIsLoading(false)} />
+        <LoadingComponent changeIsLoading={() => dispatch(setIsLoading(false))} />
       ) : null}
-
     </View>
   );
 };

@@ -1,10 +1,17 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, Image, Pressable } from "react-native";
 import React from "react";
 
-const ImageComponent = ({ source  }) => {
+const ImageComponent = ({imageSource, imageStyle, handleIconPress}) => {
   return (
     <View>
-      <Image source={require({source})} style={styles.image} />
+      <Pressable 
+      onPress={handleIconPress}>
+        <Image 
+      source={imageSource}  
+      style={imageStyle}
+      
+      />
+      </Pressable>
     </View>
   );
 };
@@ -12,8 +19,5 @@ const ImageComponent = ({ source  }) => {
 export default ImageComponent;
 
 const styles = StyleSheet.create({
-  image: {
-    width: 130,
-    height: 130,
-  },
+ 
 });

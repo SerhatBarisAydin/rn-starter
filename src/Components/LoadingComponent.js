@@ -7,10 +7,10 @@ import {
 } from "react-native";
 import React from "react";
 
-const LoadingComponent = (props) => {
+const LoadingComponent = ({name, changeIsLoading}) => {
   return (
     <View style={styles.container}>
-      <Pressable onPress={() => props.changeIsLoading()}>
+      <Pressable onPress={() => changeIsLoading()}>
         <Text style={styles.textStyle}>cikis</Text>
       </Pressable>
       <ActivityIndicator size={"large"} />
