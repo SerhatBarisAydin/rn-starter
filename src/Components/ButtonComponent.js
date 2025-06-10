@@ -1,6 +1,10 @@
 import { StyleSheet, Text, View, Pressable } from "react-native";
 import React from "react";
 
+//Animated yapısını kurarken belirli yapıların başına "Animated." olarak eklenir.
+//diğer komponentlerde kullanmak için create animated component kurulmalı
+//Dökümantasyon sayfasına göz at
+
 const ButtonComponent = ({
   setWidth,
   buttonText,
@@ -19,7 +23,6 @@ const ButtonComponent = ({
           },
           styles.button,
         ]}
-
       >
         <Text style={styles.loginButtonText}>{buttonText}</Text>
       </Pressable>
