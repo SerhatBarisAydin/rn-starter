@@ -1,6 +1,25 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { getAuth, signInWithEmailAndPassword, signOut, createUserWithEmailAndPassword, sendEmailVerification } from "firebase/auth";
+import {
+  getAuth,
+  signInWithEmailAndPassword,
+  signOut,
+  createUserWithEmailAndPassword,
+  sendEmailVerification,
+} from "firebase/auth";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useState } from "react";
+
+//Get User Informationsss
+export const getUserInformation = () => {
+  const auth = getAuth();
+  const user = auth.currentUser;
+
+  if (user !== null) {
+    user.providerData.forEach((profile) => {
+      console.log("  Email: " + profile.email);
+    });
+  }
+};
 
 export const login = createAsyncThunk(
   "user/login",
@@ -50,50 +69,44 @@ export const autoLogin = createAsyncThunk("user/autoLogin", async () => {
 
 // Log Out işlemleri
 
-export const logOut = createAsyncThunk('user/logout', async () =>{
-    try {
-        const auth = getAuth()
-        await signOut(auth)
+export const logOut = createAsyncThunk("user/logout", async () => {
+  try {
+    const auth = getAuth();
+    await signOut(auth);
 
-        await AsyncStorage.removeItem("userToken")
-        return null;
-
-    } catch (error) {
-        throw error
-    }
-})
-
-
-
-
+    await AsyncStorage.removeItem("userToken");
+    return null;
+  } catch (error) {
+    throw error;
+  }
+});
 
 //Kullanıcı kayıt işlemleri
 
-export const register = createAsyncThunk('user/register', async({email, password}) => {
-      try {
-        
-        const auth = getAuth();
-        const userCredential = await createUserWithEmailAndPassword(auth, email, password)
+export const register = createAsyncThunk(
+  "user/register",
+  async ({ email, password }) => {
+    try {
+      const auth = getAuth();
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
 
-        const user = userCredential.user
-        const token = user.stsTokenManager.accessToken;
+      const user = userCredential.user;
+      const token = user.stsTokenManager.accessToken;
 
-        await sendEmailVerification(user);
-        
-        await AsyncStorage.setItem("userToken" , token)
+      await sendEmailVerification(user);
 
-        return token;
+      await AsyncStorage.setItem("userToken", token);
 
-
-
-      } catch (error) {
-        throw error;
-      }
-})
-
-
-
-
+      return token;
+    } catch (error) {
+      throw error;
+    }
+  }
+);
 
 const initialState = {
   isLoading: false,
@@ -138,7 +151,6 @@ export const userSlice = createSlice({
         state.isLoading = false;
         state.isAuth = false;
         state.error = action.error.message;
-
       })
       .addCase(autoLogin.pending, (state) => {
         state.isLoading = true;
@@ -154,37 +166,33 @@ export const userSlice = createSlice({
         state.isAuth = false;
         state.token = null;
       })
-      .addCase(logOut.pending , (state) => {
-
-        state.isLoading =true;
-    
-
+      .addCase(logOut.pending, (state) => {
+        state.isLoading = true;
       })
-      .addCase(logOut.fulfilled , (state, action) => {
-        state.isLoading  =false;
+      .addCase(logOut.fulfilled, (state, action) => {
+        state.isLoading = false;
         state.isAuth = false;
         state.token = null;
-        state. error = null;
+        state.error = null;
       })
-      .addCase(logOut.rejected , (state, action) => {
-        state.isLoading = false; 
+      .addCase(logOut.rejected, (state, action) => {
+        state.isLoading = false;
         state.error = action.payload;
       })
-      .addCase(register.pending , (state) => {
-        state.isLoading  =true;
+      .addCase(register.pending, (state) => {
+        state.isLoading = true;
         state.isAuth = false;
       })
-      .addCase(register.fulfilled , (state, action) => {
+      .addCase(register.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.isAuth =true;
+        state.isAuth = true;
         state.token = action.payload;
       })
-      .addCase(register.rejected , (state, action) => {
+      .addCase(register.rejected, (state, action) => {
         state.isLoading = false;
         state.isAuth = false;
-        state.error = "Invalid Email or Password"
-      })
-
+        state.error = "Invalid Email or Password";
+      });
   },
 });
 

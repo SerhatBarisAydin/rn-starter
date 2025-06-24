@@ -1,15 +1,15 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
-import { Button, Card } from '@rneui/base'
+import { Card, Divider, } from '@rneui/base'
 
-const ChatBotScreen = () => {
+const HomePageCardComponent = () => {
   return (
     <View>
-      <Button>Merhaba</Button>
+        
     </View>
   )
 }
 
-export default ChatBotScreen
+export default HomePageCardComponent
 
 const styles = StyleSheet.create({})

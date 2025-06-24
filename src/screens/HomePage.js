@@ -1,66 +1,79 @@
-import { StyleSheet, Text, View, Image } from "react-native";
+import { StyleSheet, Text, View, Image, Pressable } from "react-native";
 import React from "react";
+import ButtonComponent from "../Components/ButtonComponent";
 import SectionCardComponent from "../Components/SectionCardComponent";
-import ButtonComponent from "../Components/ButtonComponent"
-import ImageComponent from "../Components/ImageComponent";
+import FlightCardComponent from "../Components/FlightCardComponent";
+import { Avatar } from '@rneui/base'
 import { useDispatch } from "react-redux";
-import { logOut } from "../redux/userSlice";
+import { logOut, getUserInformation } from "../redux/userSlice";
 
-const HomePage = () => {
+
+
+
+const HomePage = ({ navigation }) => {
 
   const dispatch = useDispatch();
   const handleLogOut = () => {
     dispatch(logOut());
   };
 
-
-
-
+  const userInformation = getUserInformation();
 
   return (
     <View style={styles.container}>
-
-
-      <View style={styles.homePageImage} >
-
-          <Image style={styles.welcomePlane} source={require('../../assets/image/plane.jpg')}/>
-          <Text style={styles.welcomeTextOnImage}>Merhaba, </Text>
+      {/*       <View style={styles.homePageImage}>
+        <Image
+          style={styles.welcomePlane}
+          source={require("../../assets/image/plane.jpg")}
+        />
+        <Text style={styles.welcomeTextOnImage}>
+          Merhaba, {userInformation}{" "}
+        </Text>
       </View>
 
+     <View>
+        <FlightCardComponent height={120} width={"100%"} />
+    </View>  */}
 
-      
-      
-      
+      <View style={styles.ProfileContainer}>
+        <Avatar
+          onPress={() => navigation.navigate("Profile")}
+          size={128}
+          rounded
+          source={require("../../assets/image/aviation.png")}
+        />
+        <Text style={styles.profileText}>Merhaba</Text>
+      </View>
+
       <View style={styles.sectionsContainer}>
         <SectionCardComponent
-          IconSource={require("../../assets/image/google.png")}
-          title="Google"
-          onPress={() => alert("Google Card Pressed")}
-          height={100}
-          width={"40%"}
-          backgroundColor={"red"}
+          onPress={() => navigation.navigate("FlightBook")}
+          imageSource={require("../../assets/image/planeIcon.png")}
+          cardText={"Uçuşunu planla"}
         />
         <SectionCardComponent
-          IconSource={require("../../assets/image/google.png")}
-          title="Google"
-          onPress={() => alert("Google Card Pressed")}
-          height={100}
-          width={"60%"}
+           onPress={() => navigation.navigate("ChatBot")}
+          imageSource={require("../../assets/image/aiChatbot.png")}
+          cardText={"Bot'a sor"}
         />
         <SectionCardComponent
-          IconSource={require("../../assets/image/google.png")}
-          title="Google"
-          onPress={() => alert("Google Card Pressed")}
-          height={100}
-          width={"60%"}
+         onPress={() => navigation.navigate("FlightBook")}
+          imageSource={require("../../assets/image/planeIcon.png")}
+          cardText={"Uçuşunu planla"}
         />
-        <SectionCardComponent
-          IconSource={require("../../assets/image/google.png")}
-          title="Google"
-          onPress={() => alert("Google Card Pressed")}
-          height={100}
-          width={"40%"}
-        />
+
+      </View>
+
+      <View style={styles.aiContainer}>
+        <Pressable
+          onPress={() => navigation.navigate("ChatBot")}
+          style={styles.aiPressable}
+        >
+          <Image
+            style={styles.aiImage}
+            source={require("../../assets/image/aiChatbotImage.png")}
+          />
+        </Pressable>
       </View>
 
       <ButtonComponent
@@ -73,6 +86,8 @@ const HomePage = () => {
 
 
 
+
+     
     </View>
   );
 };
@@ -81,45 +96,75 @@ export default HomePage;
 
 const styles = StyleSheet.create({
   sectionsContainer: {
-    margin: 0,
-    borderWidth: 1,
-    width: "100%",
-    flexDirection: "row",
-    flexWrap: "wrap",
-    alignItems: "center",
-    justifyContent: "center"
+    
+    width: "95%",
+    
+    
+
+    //opacity: 0.4
   },
   container: {
-    borderWidth: 1,
     width: "100%",
     height: "100%",
     flex: 1,
+    backgroundColor: "white",
+    alignItems: "center",
   },
-  welcomePlane:{
-    width:"100%",
-    height:"100%",
-    flex:1,
-    
-    boxShadow: "0 0 50",
-    shadowColor:"black"
+  welcomePlane: {
+    width: "100%",
+    height: "100%",
+    // flex: 1,
   },
-  homePageImage:{
-    marginBottom:30,
-    width:"100%",
-    height:180,
-    borderWidth:2,
-    borderColor:"red",
-      
+  homePageImage: {
+    width: "100%",
+    height: 180,
   },
-  welcomeTextOnImage:{
-    position:"absolute",
-    bottom:8,
-    left:12,
+  welcomeTextOnImage: {
+    position: "absolute",
+    bottom: 8,
+    left: 12,
     fontSize: 25,
     fontWeight: "bold",
-    color: "white"
-    
+    color: "white",
+  },
+
+  aiPressable: {
+    height: "50",
+  },
+  aiImage: {
+    height: "50",
+    width: "50",
+  },
+  aiContainer: {
+    width: 90,
+    height: 90,
+    alignItems: "center",
+    justifyContent: "center",
+    borderRadius: 100,
+    backgroundColor: "beige",
+    boxShadow: "0 5 5 1",
+    position: "absolute",
+    bottom: 20,
+    right: 20,
+  },
+
+  ProfileContainer:{
+    paddingVertical: 20,
+    alignItems: "center",
+    justifyContent:"center",
+    width:"100%",
+    backgroundColor:"#D4FCC3"
+  },
+  profileText:{
+    marginTop:15,
+    fontWeight:"bold",
+    fontSize: 20,
+    color:"#362C28",
+    fontFamily:"BakbakOneRegular"
   }
+
+
+
 });
 
 /*

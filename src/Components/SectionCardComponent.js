@@ -1,21 +1,21 @@
-import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
-import React from 'react';
+import { StyleSheet, Text, View, Image, Pressable } from "react-native";
+import React from "react";
 
-const SectionCardComponent = ({
-  IconSource,
-  title,
-  onPress,
-  width = 100,
-  height = 100, // default square size
-  backgroundColor
-}) => {
+const SectionCardComponent = ({ imageSource, cardText, onPress }) => {
   return (
-    <View style={[styles.container, { width: width, height: height, backgroundColor: backgroundColor }]}>
-      <Pressable style={styles.pressable} onPress={onPress}>
-        <Image style={styles.image} source={IconSource} resizeMode="contain" />
-        {title && <Text style={styles.title}>{title}</Text>}
-      </Pressable>
+    
+    <Pressable onPress={onPress}>
+      <View style={styles.container}>
+      <Text style={styles.cardText}>{cardText}</Text>
+      <Image style={styles.leftIcon} source={imageSource} />
+      <Image
+        style={styles.arrowIcon}
+        source={require("../../assets/image/rightArrow.png")}
+      />
     </View>
+    </Pressable>
+    
+    
   );
 };
 
@@ -23,30 +23,32 @@ export default SectionCardComponent;
 
 const styles = StyleSheet.create({
   container: {
-    borderWidth: 1,
-    borderRadius: 12,
-    overflow: 'hidden',
-    backgroundColor: '#fff',
-    elevation: 2,
+    width: "100%",
+    height: 50,
+    borderWidth: 0.5,
+    marginTop: 20,
+    backgroundColor: "#FBFBFF",
+    borderRadius: 6,
+    boxShadow: "0 2 4 0.1",
   },
-  pressable: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: 8,
+  leftIcon: {
+    width: 35,
+    height: 35,
+    position: "absolute",
+    left: 20,
+    top: 7,
   },
-  image: {
-    width: '60%',
-    height: '60%',
-    borderRadius: 8,
-    borderWidth: 1,
-    borderColor: 'green',
-    
+  arrowIcon: {
+    width: 35,
+    height: 35,
+    position: "absolute",
+    right: 10,
+    top: 7,
   },
-  title: {
-    marginTop: 4,
-    fontWeight: 'bold',
-    fontSize: 14,
-    textAlign: 'center',
+  cardText: {
+    position: "absolute",
+    left: 100,
+    top: 12,
+    fontSize: 18,
   },
 });

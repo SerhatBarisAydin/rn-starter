@@ -6,38 +6,24 @@ import {
 } from "../Components";
 
 import { useSelector, useDispatch } from "react-redux";
-import { setIsLoading} from "../redux/userSlice";
+import { setIsLoading } from "../redux/userSlice";
 import { login, autoLogin } from "../redux/userSlice";
 import { useState, useEffect } from "react";
 
 const LoginScreen = ({ navigation }) => {
-
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
- 
-  
-
-
-
-
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   //userSlice içerisindeki verilerin okunması..:
-  const {isLoading} = useSelector((state) => state.user);
+  const { isLoading } = useSelector((state) => state.user);
 
   // userSlice içerisindeki reducer yapılarını kullanma veya veri gönderme
   const dispatch = useDispatch();
 
-
   // Kullanıcı daha önce giriş yaotıysa kontrol et ve auto login gerçekleştir
   useEffect(() => {
-    dispatch(autoLogin())  
-  }, [])
-  
-
-
-
-
-
+    dispatch(autoLogin());
+  }, []);
 
   return (
     <View style={styles.container}>
@@ -67,7 +53,7 @@ const LoginScreen = ({ navigation }) => {
       <ButtonComponent
         setWidth="80%"
         buttonText="Login"
-        handleOnPress={() => dispatch(login({email, password}))}
+        handleOnPress={() => dispatch(login({ email, password }))}
         buttonColor="green"
         pressedButtonColor="lightgreen"
       />
@@ -81,7 +67,9 @@ const LoginScreen = ({ navigation }) => {
       />
 
       {isLoading ? (
-        <LoadingComponent changeIsLoading={() => dispatch(setIsLoading(false))} />
+        <LoadingComponent
+          changeIsLoading={() => dispatch(setIsLoading(false))}
+        />
       ) : null}
     </View>
   );

@@ -1,25 +1,29 @@
 import { StyleSheet, Text, View, Image, Pressable } from "react-native";
 import React, { useState } from "react";
-import { TextInputComponent, ButtonComponent, ImageComponent, LoadingComponent } from "../Components";
+import {
+  TextInputComponent,
+  ButtonComponent,
+  ImageComponent,
+  LoadingComponent,
+} from "../Components";
 import { useDispatch, useSelector } from "react-redux";
 import { register } from "../redux/userSlice";
 
-const SignUpScreen = ({navigation}) => {
+const SignUpScreen = ({ navigation }) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const dispatch = useDispatch();
 
-  const {isLoading} = useSelector(state => state.user)
+  const { isLoading } = useSelector((state) => state.user);
   const handleRegister = () => {
-    dispatch(register({email, password})) 
-  }
+    dispatch(register({ email, password }));
+  };
 
   if (isLoading) {
-    return <LoadingComponent/> 
+    return <LoadingComponent />;
   }
-
 
   return (
     <View style={styles.container}>
@@ -65,35 +69,36 @@ const SignUpScreen = ({navigation}) => {
           pressedButtonColor="green"
           handleOnPress={handleRegister}
         />
-        
+
         <View style={styles.loginOptionContainer}>
           <ImageComponent
-        imageSource={require("../../assets/image/google.png")}
-        imageStyle={styles.imageStyle }
-        handleIconPress={() => console.log("hello sweety.... send me to google account :)")}
-        />
-        <ImageComponent
-        imageSource={require("../../assets/image/google.png")}
-        imageStyle={styles.imageStyle }
-        handleIconPress={() => console.log("hello sweety.... send me to google account :)")}
-        />
-        <ImageComponent
-        imageSource={require("../../assets/image/google.png")}
-        imageStyle={styles.imageStyle }
-        handleIconPress={() => console.log("hello sweety.... send me to google account :)")}
-        />
-        
+            imageSource={require("../../assets/image/google.png")}
+            imageStyle={styles.imageStyle}
+            handleIconPress={() =>
+              console.log("hello sweety.... send me to google account :)")
+            }
+          />
+          <ImageComponent
+            imageSource={require("../../assets/image/google.png")}
+            imageStyle={styles.imageStyle}
+            handleIconPress={() =>
+              console.log("hello sweety.... send me to google account :)")
+            }
+          />
+          <ImageComponent
+            imageSource={require("../../assets/image/google.png")}
+            imageStyle={styles.imageStyle}
+            handleIconPress={() =>
+              console.log("hello sweety.... send me to google account :)")
+            }
+          />
         </View>
-
 
         <Text>Already have an account? </Text>
 
         <Pressable onPress={() => navigation.navigate("Login")}>
           <Text style={styles.loginText}>Login</Text>
         </Pressable>
-
-
-      
       </View>
     </View>
   );
@@ -103,7 +108,7 @@ export default SignUpScreen;
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop:50,
+    paddingTop: 50,
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
@@ -131,29 +136,25 @@ const styles = StyleSheet.create({
     borderColor: "red",
     flex: 3,
     width: "100%",
-    alignItems:"center",
-    justifyContent:"center"
+    alignItems: "center",
+    justifyContent: "center",
   },
   signUpImage: {
     width: 130,
     height: 130,
   },
-  loginText:{
-    fontWeight:"bold",
+  loginText: {
+    fontWeight: "bold",
   },
-  imageStyle:{
-    height:40,
-    width:40
+  imageStyle: {
+    height: 40,
+    width: 40,
   },
-  loginOptionContainer:{
+  loginOptionContainer: {
     marginVertical: 20,
-    alignItems:"center",
+    alignItems: "center",
     justifyContent: "space-evenly",
     width: "100%",
-    flexDirection:"row"
-    
-
-  }
-
-
+    flexDirection: "row",
+  },
 });
