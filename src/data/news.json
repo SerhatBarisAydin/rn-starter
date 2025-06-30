@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "imageUrl": "new_terminal.jpg",
+    "title": "Yeni Terminal Hizmete Açıldı",
+    "content": "İstanbul Havalimanı’ndaki yeni terminal, yolculara daha modern ve konforlu bir seyahat deneyimi sunuyor."
+  },
+  {
+    "id": 2,
+    "imageUrl": "baggage_system.jpg",
+    "title": "Akıllı Bagaj Takip Sistemi",
+    "content": "Yeni geliştirilen sistem sayesinde yolcular bagajlarını mobil uygulama üzerinden kolaylıkla takip edebilecek."
+  },
+  {
+    "id": 3,
+    "imageUrl": "dutyfree.jpg",
+    "title": "Duty Free Yaz Kampanyaları Başladı",
+    "content": "Duty Free mağazalarında yaz aylarına özel büyük indirimler ve fırsatlar sizleri bekliyor!"
+  },
+  {
+    "id": 4,
+    "imageUrl": "digital_boarding.jpg",
+    "title": "Dijital Biniş Kartı Dönemi",
+    "content": "Artık biniş kartınızı mobil uygulamadan QR kod olarak alabilir ve fiziksel karta ihtiyaç duymadan uçağa binebilirsiniz."
+  }
+]

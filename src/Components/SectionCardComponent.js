@@ -5,7 +5,7 @@ const SectionCardComponent = ({ imageSource, cardText, onPress }) => {
   return (
     
     <Pressable onPress={onPress}>
-      <View style={styles.container}>
+      <View style={styles.container }>
       <Text style={styles.cardText}>{cardText}</Text>
       <Image style={styles.leftIcon} source={imageSource} />
       <Image
@@ -25,11 +25,15 @@ const styles = StyleSheet.create({
   container: {
     width: "100%",
     height: 50,
-    borderWidth: 0.5,
+    borderWidth: 0,
+    borderLeftWidth:5,
     marginTop: 20,
     backgroundColor: "#FBFBFF",
     borderRadius: 6,
-    boxShadow: "0 2 4 0.1",
+    shadowColor: "#000",
+    shadowOpacity: 1,
+    shadowRadius: 8,
+    elevation: 4,
   },
   leftIcon: {
     width: 35,

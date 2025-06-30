@@ -8,6 +8,7 @@ const FlightSearchComponent = ({ onSearch }) => {
 
   return (
     <View style={styles.container}>
+      
       <Text style={styles.label}>Nereden</Text>
       <TextInput
         style={styles.input}
@@ -22,6 +23,7 @@ const FlightSearchComponent = ({ onSearch }) => {
         value={to}
         onChangeText={setTo}
       />
+    
       <Text style={styles.label}>Tarih (YYYY-MM-DD)</Text>
       <TextInput
         style={styles.input}
@@ -29,7 +31,7 @@ const FlightSearchComponent = ({ onSearch }) => {
         value={date}
         onChangeText={setDate}
       />
-      <Button title="Uçuşları Ara" onPress={() => onSearch({ from, to, date })} />
+      <Button style={styles.Button} title="Uçuşları Ara" onPress={() => onSearch({ from, to, date })} />
     </View>
   )
 }
@@ -40,20 +42,29 @@ const styles = StyleSheet.create({
   container: {
     
     width: "90%",
-    backgroundColor: "#B9314F",
+    backgroundColor: "#fff",
     borderRadius: 12,
     padding: 16,
     marginVertical: 16,
-    alignSelf: "center"
+    alignSelf: "center",
+    shadowColor: "#000",
+    shadowOpacity: 0.06,
+    shadowRadius: 8,
+    elevation: 2,
   },
   label: {
-    color: "#fff",
+    color: "black",
     marginTop: 8
   },
   input: {
     backgroundColor: "#fff",
     borderRadius: 6,
     padding: 8,
-    marginVertical: 4
+    marginVertical: 4,
+    borderBottomWidth:1
+  },
+  Button:{
+    borderRadius:8
   }
+  
 })

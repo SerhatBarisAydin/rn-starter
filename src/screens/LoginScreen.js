@@ -9,6 +9,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { setIsLoading } from "../redux/userSlice";
 import { login, autoLogin } from "../redux/userSlice";
 import { useState, useEffect } from "react";
+import { LinearGradient } from "expo-linear-gradient";
 
 const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState("");
@@ -26,8 +27,11 @@ const LoginScreen = ({ navigation }) => {
   }, []);
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.welcomeText}>Welcome </Text>
+    <LinearGradient
+      colors={['rgb(250, 250, 247) ', 'rgb(104, 230, 156)', 'rgb(94, 155, 180)']}
+      style={styles.container}
+    >
+    
 
       <Image
         style={styles.loginImage}
@@ -71,7 +75,7 @@ const LoginScreen = ({ navigation }) => {
           changeIsLoading={() => dispatch(setIsLoading(false))}
         />
       ) : null}
-    </View>
+    </LinearGradient>
   );
 };
 

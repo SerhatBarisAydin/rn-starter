@@ -3,15 +3,12 @@ import React from "react";
 import ButtonComponent from "../Components/ButtonComponent";
 import SectionCardComponent from "../Components/SectionCardComponent";
 import FlightCardComponent from "../Components/FlightCardComponent";
-import { Avatar } from '@rneui/base'
+import NewsSliderComponent from "../Components/NewsSliderComponent";
+import { Avatar } from "@rneui/base";
 import { useDispatch } from "react-redux";
 import { logOut, getUserInformation } from "../redux/userSlice";
 
-
-
-
 const HomePage = ({ navigation }) => {
-
   const dispatch = useDispatch();
   const handleLogOut = () => {
     dispatch(logOut());
@@ -21,29 +18,9 @@ const HomePage = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      {/*       <View style={styles.homePageImage}>
-        <Image
-          style={styles.welcomePlane}
-          source={require("../../assets/image/plane.jpg")}
-        />
-        <Text style={styles.welcomeTextOnImage}>
-          Merhaba, {userInformation}{" "}
-        </Text>
-      </View>
 
-     <View>
-        <FlightCardComponent height={120} width={"100%"} />
-    </View>  */}
-
-      <View style={styles.ProfileContainer}>
-        <Avatar
-          onPress={() => navigation.navigate("Profile")}
-          size={128}
-          rounded
-          source={require("../../assets/image/aviation.png")}
-        />
-        <Text style={styles.profileText}>Merhaba</Text>
-      </View>
+      
+      <NewsSliderComponent />
 
       <View style={styles.sectionsContainer}>
         <SectionCardComponent
@@ -52,42 +29,30 @@ const HomePage = ({ navigation }) => {
           cardText={"Uçuşunu planla"}
         />
         <SectionCardComponent
-           onPress={() => navigation.navigate("ChatBot")}
+          onPress={() => navigation.navigate("ChatBot")}
           imageSource={require("../../assets/image/aiChatbot.png")}
           cardText={"Bot'a sor"}
         />
         <SectionCardComponent
-         onPress={() => navigation.navigate("FlightBook")}
-          imageSource={require("../../assets/image/planeIcon.png")}
-          cardText={"Uçuşunu planla"}
+          onPress={() => navigation.navigate("FlightBook")}
+          imageSource={require("../../assets/image/mapIcon.png")}
+          cardText={"Rotanı bul"}
         />
 
+        <SectionCardComponent
+          onPress={() => navigation.navigate("FlightBook")}
+          imageSource={require("../../assets/image/cctv.png")}
+          cardText={"Kalabalık tahmini"}
+        />
+
+        <SectionCardComponent
+          onPress={() => navigation.navigate("Profile")}
+          imageSource={require("../../assets/image/ProfileIcon.png")}
+          cardText={"Profile"}
+        />
       </View>
 
-      <View style={styles.aiContainer}>
-        <Pressable
-          onPress={() => navigation.navigate("ChatBot")}
-          style={styles.aiPressable}
-        >
-          <Image
-            style={styles.aiImage}
-            source={require("../../assets/image/aiChatbotImage.png")}
-          />
-        </Pressable>
-      </View>
-
-      <ButtonComponent
-        buttonColor="black"
-        buttonText="Log Out"
-        pressedButtonColor="black"
-        setWidth="22%"
-        handleOnPress={handleLogOut}
-      />
-
-
-
-
-     
+      
     </View>
   );
 };
@@ -96,12 +61,7 @@ export default HomePage;
 
 const styles = StyleSheet.create({
   sectionsContainer: {
-    
     width: "95%",
-    
-    
-
-    //opacity: 0.4
   },
   container: {
     width: "100%",
@@ -110,61 +70,9 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     alignItems: "center",
   },
-  welcomePlane: {
-    width: "100%",
-    height: "100%",
-    // flex: 1,
-  },
-  homePageImage: {
-    width: "100%",
-    height: 180,
-  },
-  welcomeTextOnImage: {
-    position: "absolute",
-    bottom: 8,
-    left: 12,
-    fontSize: 25,
-    fontWeight: "bold",
-    color: "white",
-  },
-
-  aiPressable: {
-    height: "50",
-  },
-  aiImage: {
-    height: "50",
-    width: "50",
-  },
-  aiContainer: {
-    width: 90,
-    height: 90,
-    alignItems: "center",
-    justifyContent: "center",
-    borderRadius: 100,
-    backgroundColor: "beige",
-    boxShadow: "0 5 5 1",
-    position: "absolute",
-    bottom: 20,
-    right: 20,
-  },
-
-  ProfileContainer:{
-    paddingVertical: 20,
-    alignItems: "center",
-    justifyContent:"center",
-    width:"100%",
-    backgroundColor:"#D4FCC3"
-  },
-  profileText:{
-    marginTop:15,
-    fontWeight:"bold",
-    fontSize: 20,
-    color:"#362C28",
-    fontFamily:"BakbakOneRegular"
+  profileCard:{
+    backgroundColor:"red"
   }
-
-
-
 });
 
 /*

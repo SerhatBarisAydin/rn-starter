@@ -8,6 +8,7 @@ import {
 } from "../Components";
 import { useDispatch, useSelector } from "react-redux";
 import { register } from "../redux/userSlice";
+import { LinearGradient } from "expo-linear-gradient";
 
 const SignUpScreen = ({ navigation }) => {
   const [name, setName] = useState("");
@@ -26,7 +27,10 @@ const SignUpScreen = ({ navigation }) => {
   }
 
   return (
-    <View style={styles.container}>
+    <LinearGradient
+    colors={['rgb(250, 250, 247) ', 'rgb(104, 230, 156)', 'rgb(94, 155, 180)']}
+      style={styles.container}
+    >
       <View style={styles.title}>
         <Image
           source={require("../../assets/image/signUpIcon.png")}
@@ -70,29 +74,7 @@ const SignUpScreen = ({ navigation }) => {
           handleOnPress={handleRegister}
         />
 
-        <View style={styles.loginOptionContainer}>
-          <ImageComponent
-            imageSource={require("../../assets/image/google.png")}
-            imageStyle={styles.imageStyle}
-            handleIconPress={() =>
-              console.log("hello sweety.... send me to google account :)")
-            }
-          />
-          <ImageComponent
-            imageSource={require("../../assets/image/google.png")}
-            imageStyle={styles.imageStyle}
-            handleIconPress={() =>
-              console.log("hello sweety.... send me to google account :)")
-            }
-          />
-          <ImageComponent
-            imageSource={require("../../assets/image/google.png")}
-            imageStyle={styles.imageStyle}
-            handleIconPress={() =>
-              console.log("hello sweety.... send me to google account :)")
-            }
-          />
-        </View>
+        
 
         <Text>Already have an account? </Text>
 
@@ -100,7 +82,8 @@ const SignUpScreen = ({ navigation }) => {
           <Text style={styles.loginText}>Login</Text>
         </Pressable>
       </View>
-    </View>
+
+    </LinearGradient>
   );
 };
 

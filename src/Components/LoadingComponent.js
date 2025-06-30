@@ -11,7 +11,6 @@ const LoadingComponent = ({name, changeIsLoading}) => {
   return (
     <View style={styles.container}>
       <Pressable onPress={() => changeIsLoading()}>
-        <Text style={styles.textStyle}>cikis</Text>
       </Pressable>
       <ActivityIndicator size={"large"} />
       <Text style={styles.textStyle}>Loading...</Text>
