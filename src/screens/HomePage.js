@@ -34,13 +34,13 @@ const HomePage = ({ navigation }) => {
           cardText={"Bot'a sor"}
         />
         <SectionCardComponent
-          onPress={() => navigation.navigate("FlightBook")}
+          onPress={() => navigation.navigate("Map")}
           imageSource={require("../../assets/image/mapIcon.png")}
           cardText={"Rotanı bul"}
         />
 
         <SectionCardComponent
-          onPress={() => navigation.navigate("FlightBook")}
+          onPress={() => navigation.navigate("CrowdEstimation")}
           imageSource={require("../../assets/image/cctv.png")}
           cardText={"Kalabalık tahmini"}
         />
