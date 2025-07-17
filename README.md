@@ -15,5 +15,5 @@ Bu proje, harika bir şeyleri başarmak için geliştirilmiştir.
 
 Projeyi başlatmak için:
 
-```bash
+```bash.ssas
 npm start
